@@ -1,0 +1,74 @@
+  h1 {
+    color: aliceblue;
+  }
+  body {
+    background-color: rgb(18, 21, 59)
+  }
+  ul {
+    position:absolute;
+    left:0;
+    top:30px;
+    /* display:none; */
+  }
+  li {
+    width: 140px;
+    height: 50px;
+    background-color: aliceblue;
+    line-height: 30px;
+    text-align: center;
+    font-size: 17px;
+    float: left;
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display:inline; */
+    list-style-type: none;
+    position: relative;
+    cursor: pointer;
+  }
+  .first:hover .second {
+    display: inline;
+  }
+  .second {
+    display: none;
+    float: left;
+    padding-left: 0px;
+    padding-top: 20px;
+  }
+  .third:hover {
+    background-color: rgb(0, 119, 255);
+    color:aliceblue;
+  }
+  .third:hover .forth{
+    display: inline;
+  }
+  .forth {
+      top:0px;
+      width: 145px;
+      padding-left: 140px;
+      padding-bottom: 50px;
+      /* color:black; */
+      /* background-color: aliceblue; */
+      display: none;
+  }
+  .fifth {
+      width: 145px;
+      height: 100%;
+      color:black;
+      background-color: aliceblue;
+  }
+  .fifth_1 {
+      width: 145px;
+      height: 100%;
+      color:black;
+      background-color: aliceblue;
+  }
+  .fifth:hover {
+    background-color: rgb(0, 119, 255);
+    color:aliceblue;
+  }
+  .fifth_1:hover {
+    background-color: rgb(0, 119, 255);
+    color:aliceblue;
+  }

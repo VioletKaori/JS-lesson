@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>轮播图</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- <img src="image/img-1.jpg"> -->
+    <div class="pic">
+        <div class="content">
+            <img src="image/img-1.jpg">
+            <img src="image/img-2.jpg">
+            <img src="image/img-3.jpg">
+            <img src="image/img-4.jpg">
+        </div>
+        <ul class="index">
+            <li class="first"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="right">></div>
+        <div class="left"><</div>
+    </div>
+    <!-- 请输入间隔时间(≥100)：<input id="spaceTime">
+    <button id="confirm">确认</button> -->
+    <button id="stop">停止</button> 
+<script src="js/jquery-3.3.1.min.js"></script>
+<!-- <script src="js/main.js"></script> -->
+<script src="js/plugin.js"></script>
+<script>
+    $(".pic").carouselImage({
+        changeTime: 3000, // 切换图片间隔时间
+        changeSpeed: 300, // 切换图片的速度
+        index: 0, // 初始导航点
+    });
+</script>
+</body>
+</html>

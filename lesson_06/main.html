@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/plugin.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+  </head>
+  <body>
+    <div class="header_bg">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <a href="main.html"><img src="image/logo.png"></a>
+                </div>
+                <div class="h_menu">
+                    <a id="touch-menu" class="mobile-menu" href="#">Menu</a>
+                    <nav>
+                        <ul class="menu list-unstyled">
+                            <li class="activate"><a href="main.html">HOME</a></li>
+                            <li><a href="#">ABOUT</a></li>
+                            <li><a href="#">services</a></li>
+                            <li><a href="#">PORTFOLIO</a>
+                                <ul class="sub-menu list-unstyled">
+                                    <li><a href="#">Portfolio Page</a></li>
+                                    <li><a href="#">Portfolio Page</a></li>
+                                    <li><a href="#">Portfolio Page</a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">Sub-Menu 1</a></li>
+                                            <li><a href="#">Sub-Menu 2</a></li>
+                                            <li><a href="#">Sub-Menu 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">BLOG</a></li>
+                            <li><a href="#">feature</a></li>
+                            <li><a href="#">CONTACT</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="pic">
+        <div class="content">
+            <img class="sliderImage" src="image/img-5.jpg">
+            <img class="sliderImage" src="image/img-6.jpg">
+            <img class="sliderImage" src="image/img-7.jpg">
+            <img class="sliderImage" src="image/img-8.jpg">
+        </div>
+        <ul class="index">
+            <li class="first"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="right"><img class="rightImg" src="image/右.png"></div>
+        <div class="left"><img class="leftImg" src="image/左.png"></div>
+    </div>
+    <div class="main_bg"><!-- start main -->
+        <div class="container">
+            <div class="main_grid">
+                <div class="top_grid"><!-- start top_grid -->
+                    <div class="col-md-10 span1_of_1">
+                        <h3>some of our top services</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    </div>
+                    <div class="col-md-2 span1_of_2">
+                        <a class="btn" href="#">view more</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="span_of_4"><!-- start span_of_4 -->
+                    <div class="col-md-3 span1_of_4">
+                        <div class="span4_of_list">
+                            <span class="active"><i class="fa fa-thumbs-o-up"></i></span>
+                            <h3>suspendisse</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <div class="read_more">
+                                <a class="btn btn-2 active" href="single-page.html">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 span1_of_4">
+                        <div class="span4_of_list">
+                            <span><i class="fa fa-lock"></i></span>
+                            <h3>maecenas</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <div class="read_more">
+                                <a class="btn  btn-2b" href="single-page.html">view more</a>
+                            </div>	
+                        </div>	
+                    </div>
+                    <div class="col-md-3 span1_of_4">
+                        <div class="span4_of_list">
+                            <span><i class="fa fa-flag"></i></span>
+                            <h3>aliquam</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <div class="read_more">
+                                <a class="btn btn-2b" href="single-page.html">view more</a>
+                            </div>		
+                        </div>
+                    </div>
+                    <div class="col-md-3 span1_of_4">
+                        <div class="span4_of_list">
+                            <span><i class="fa fa-flask"></i></span>
+                            <h3>habitasse</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                            <div class="read_more">
+                                <a class="btn btn-2b" href="single-page.html">view more</a>
+                            </div>						
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- end span_of_4 -->
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+  </body>
+  <script src="js/main.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/plugin.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+      $(".pic").carouselImage({
+          changeTime: 5000, // 切换图片间隔时间
+          changeSpeed: 1300, // 切换图片的速度
+          clickChangeSpeed: 300, //点击切换图片的速度
+          index: 0, // 初始导航点
+      });
+    //   window.onbeforeunload=function(){
+    //       console.log(123);
+    //   };
+  </script>
+</html>

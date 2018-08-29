@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+    <link rel="stylesheet" href="js/index.css">
+</head>
+<body>
+        
+  <div id="app">
+        <el-main>
+            <!-- <form action="#" method="get">
+              <el-row
+                style="width: 100;height: 100;">
+                  <el-tag
+                  :key="tag"
+                  v-for="tag in dynamicTags"
+                  closable
+                  :disable-transitions="false"
+                  @close="handleClose(tag)"
+                  style="float: left;">
+                    {{tag}}
+                  </el-tag>
+                  <el-tag
+                  :key="tag"
+                  v-for="tag in dynamicLocationTags"
+                  closable
+                  :disable-transitions="false"
+                  @close="handleClose(tag)"
+                  style="float: left;">
+                    {{tag}}
+                  </el-tag>
+                </el-row>
+              <el-row>
+                <span class="demonstration">价格：</span>
+                <el-button size="mini">超小按钮</el-button>
+                <el-button size="mini">超小按钮</el-button>
+                <el-button size="mini">超小按钮</el-button>
+              </el-row>
+            
+              <el-row>
+                <span class="demonstration">品牌：</span>
+                <el-button class="Midea" size="mini" @click="addTag(item.id[0])" :disabled="false">Midea/美的</el-button>
+                <el-button class="Gree" size="mini" @click="addTag(item.id[1])" :disabled="false">Gree/格力</el-button>
+                <el-button class="Airmate" size="mini" @click="addTag(item.id[2])" :disabled="false">Airmate/艾美特</el-button>
+                <span id="air"></span>
+              </el-row>
+              <el-row>
+                <span class="demonstration">产地：</span>
+                <el-button size="mini" @click="addLocationTag(item.location[0])">武汉</el-button>
+                <el-button size="mini" @click="addLocationTag(item.location[1])">北京</el-button>
+                <el-button size="mini" @click="addLocationTag(item.location[2])">上海</el-button>
+              </el-row>
+              <el-row>
+                <el-button size="mini" @click="clearTag()">清空</el-button>
+                <!-- <el-button size="mini" type="submit" value="提交" @click="submitForm()">提交</el-button> -->
+                <!-- <input type="submit" value="筛选">
+              </el-row> -->
+
+            <!-- <el-slider v-model="value4" :format-tooltip="formatTooltip" show-input></el-slider> -->
+            <!-- <form><input type="submit" value="Submit" onclick="submitForm();"/></form> -->
+          <!-- </form> -->
+            <el-form ref="form" :model="form" label-width="80px">
+                <el-form-item label="价格：">
+                    <el-checkbox-group v-model="checkboxGroup1" style="float: left;">
+                        <el-checkbox-button v-for="(price, index) in prices" :label="index" :key="price" name="price">{{price}}</el-checkbox-button>
+                    </el-checkbox-group>
+                </el-form-item>
+                <el-form-item label="品牌：">
+                    <el-checkbox-group v-model="checkboxGroup2" style="float: left;">
+                        <el-checkbox-button v-for="(brand, index) in brands" :label="index" :key="brand" name="brand">{{brand}}</el-checkbox-button>
+                    </el-checkbox-group>
+                </el-form-item>
+                <!-- <input name="price123" value="123">
+                <input name="price123" value="123456"> -->
+                <el-form-item label="产地：">
+                    <el-checkbox-group v-model="checkboxGroup3" style="float: left;">
+                        <el-checkbox-button v-for="(city, index) in cities" :label="index" :key="city" name="city">{{city}}</el-checkbox-button>
+                    </el-checkbox-group>
+                </el-form-item>
+                <el-form-item style="float: left;"> 
+                    <input type="submit" @click="onSubmit" value="提交" class="inputButton"/>
+                    <!-- <el-button type="submit" @click="onSubmit">解析url</el-button> -->
+                </el-form-item>
+                <input type="checkbox" name="name123">
+                <input type="checkbox" name="price123" class="el-checkbox-button__original" value="0" checked="checked">
+            </el-form>
+        </el-main>
+    </div>
+  
+</body>
+  <!-- import Vue before Element -->    
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+          // visible: false,
+          // dynamicTags: [],
+          // dynamicTags2: [],
+          // dynamicLocationTags: [],
+          // inputVisible: false,
+          // inputValue: '',
+          // air: '艾美特',
+          // item: {
+          //   id: ['Midea/美的', 'Gree/格力', 'Airmate/艾美特'],
+          //   location: ['武汉', '北京', '上海'],
+          // },
+
+          prices: ['低于100元', '100-300元', '300-1000元', '高于1000元'],
+          brands: ['Midea/美的', 'Gree/格力', 'Airmate/艾美特'],
+          cities: ['上海', '北京', '广州', '深圳'],
+          form: {
+            price: '',
+            brand: '',
+            city: '',
+          },
+          checkboxGroup1: [],
+          checkboxGroup2: [],
+          checkboxGroup3: [],
+        }
+      },
+      created: function (){
+        let url = location.search
+        console.log(this.checkboxGroup1)
+        console.log(url)
+        $("[name='price123']").attr('checked','checked')
+        // alert($("[name='price']").val())
+        // ?price=0&brand=0
+        // console.log(url.indexOf('?'))
+        setTimeout(function(){
+          if (url.indexOf('?') === 0) {
+          url = url.substr(1)   // 将数组中开头的“？”去除
+          let arr = url.split('&')
+          // console.log(arr)
+          for (let i = 0; i< arr.length; i++) {
+            let name = arr[i].split('=')[0]
+            let index = arr[i].split('=')[1]
+            // console.log(name)
+            // console.log(index)
+            if (name === 'price') {
+                // this.checkboxGroup1.push(index)
+                console.log(this.checkboxGroup1)
+                $("[name='price']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                    $(this).parent().attr('aria-checked','true')
+                    $(this).attr('checked','checked')
+                    
+                  }
+                })
+              }
+              if (name === 'brand') {
+                console.log(this.checkboxGroup1)
+                $("[name='brand']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                  }
+                })
+              }
+              if (name === 'city') {
+                console.log(this.checkboxGroup1)
+                $("[name='city']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                  }
+                })
+              }
+          }
+        }
+        }, 1);
+
+      },
+      methods: {
+        onSubmit() {
+          let url = location.search
+          console.log(url)
+          // ?price=0&brand=0
+          // console.log(url.indexOf('?'))
+          if (url.indexOf('?') === 0) {
+            url = url.substr(1)   // 将数组中开头的“？”去除
+            let arr = url.split('&')
+            // console.log(arr)
+            for (let i = 0; i< arr.length; i++) {
+              let name = arr[i].split('=')[0]
+              let index = arr[i].split('=')[1]
+              // console.log(name)
+              // console.log(index)
+              if (name === 'price') {
+                // this.checkboxGroup1.push(index)
+                console.log(this.checkboxGroup1)
+                $("[name='price']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                  }
+                })
+              }
+              if (name === 'brand') {
+                console.log(this.checkboxGroup1)
+                $("[name='brand']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                  }
+                })
+              }
+              if (name === 'city') {
+                console.log(this.checkboxGroup1)
+                $("[name='city']").each(function(){
+                  if($(this).val()==index){
+                    $(this).parent().removeClass("el-checkbox-button")
+                    $(this).parent().addClass("el-checkbox-button is-checked")
+                  }
+                })
+              }
+            }
+          }
+        }
+        // onSubmit() {
+        //   console.log(JSON.stringify(this.checkboxGroup1));
+        //   console.log(JSON.stringify(this.checkboxGroup1Index));
+        //   let url = location.href
+        //   // console.log(url);
+        //   url = this.checkboxGroup1[0] + this.checkboxGroup2[0] + this.checkboxGroup3[0];
+        //   // console.log(url);
+        //   // this.$ref.form
+        // },
+        // formatTooltip(val) {
+        //   return val;
+        // },
+        // handleClose(tag) {
+        //   this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+        //   document.querySelector(".Midea").disabled = false;
+        //   document.querySelector(".Gree").disabled = false;
+        //   document.querySelector(".Airmate").disabled = false;
+        // },
+        // addTag(btn) {
+        //   let visible = true;
+        //   console.log(btn);
+        //   console.info(this.dynamicTags.indexOf(btn));
+        //   this.dynamicTags.splice(0,this.dynamicTags.length);
+        //   this.dynamicTags.push(btn);
+        //   // if (this.dynamicTags.indexOf(btn) == '-1') {
+        //   //   this.dynamicTags.push(btn);
+        //   // } else {
+        //   //   // this.dynamicTags.splice(0,this.dynamicTags.length);
+        //   //   for (let i = 0; i < this.dynamicTags.length; i++) {
+        //   //     if (this.dynamicTags[i] == btn) {
+        //   //       this.dynamicTags.splice(i, 1);
+        //   //     }
+        //   //   }
+        //   // }
+        // },
+        // addLocationTag(btn) {
+        //   let visible = true;
+        //   console.log(btn);
+        //   console.info(this.dynamicLocationTags.indexOf(btn));
+        //   this.dynamicLocationTags.splice(0,this.dynamicLocationTags.length);
+        //   this.dynamicLocationTags.push(btn);
+        //   // if (this.dynamicLocationTags.indexOf(btn) == '-1') {
+        //   //   this.dynamicLocationTags.push(btn);
+        //   // } else {
+        //   //   // this.dynamicTags.splice(0,this.dynamicTags.length);
+        //   //   for (let i = 0; i < this.dynamicLocationTags.length; i++) {
+        //   //     if (this.dynamicLocationTags[i] == btn) {
+        //   //       this.dynamicLocationTags.splice(i, 1);
+        //   //     }
+        //   //   }
+        //   // }
+        // },
+        // clearTag() {
+        //   this.dynamicTags.splice(0,this.dynamicTags.length);
+        // },
+        // submit: function() {
+				// 	console.log('this.inputtext');
+        //   let url = location.search;
+        //   console.log(url);
+				// },
+        // submitForm() {
+        //   // $('#approvalForm').attr('action', "loan/request/approve/" + CC.requestId+"/"+groupId);
+        //   // $('#approvalForm').submit();
+        //   let url = location.search;
+        //   console.log(url);
+        //   const finalUrl = `${url}?price=${1}&brand=${this.dynamicTags[0]}&location=${3}`;
+        //   console.log(finalUrl);
+        //   window.location.href = window.location.href + finalUrl;
+        // },
+      }
+    })
+  </script>
+  <style>
+    .el-tag + .el-tag {
+    margin-left: 10px;
+  }
+  .button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    vertical-align: bottom;
+  }
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    /* line-height: 160px; */
+  }
+  .inputButton {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+  }
+  /* .el-checkbox-button__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute; 
+    margin: 0;
+    z-index: -1;
+} */ 
+  </style>
+</html>
